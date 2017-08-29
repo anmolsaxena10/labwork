@@ -1,0 +1,4 @@
+CREATE TABLE client_master(client_no varchar2(6), name varchar2(20), city varchar(15), state varchar(15), pincode number(6), bal_due number(10,2));
+
+
+CREATE TABLE product_master(product_no varchar2(8), description varchar2(15), profit_percent number(3,2), unit_measure varchar2(8), qty_on_hand number(5), reorder_level number(3), sell_price number(6), cost_price number(6));

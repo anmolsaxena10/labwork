@@ -1,0 +1,24 @@
+make 1 person class
+Instance variable full name
+constructor parameterised
+Abstract method description string return type
+getname method returns full name of person
+
+Employe class
+Instance variable salary
+constructor full name salary
+method salary returns salary
+description of type of that person with salary value
+
+Studewnt class 
+Instance variabe branch
+Constructor full name branch
+method getbranch
+
+Demo abstract class
+main method
+two person 1 2 of type person
+initialize 1 with object of employe type with necessary values
+initialize 2 with object of student type
+Print description of each person
+
