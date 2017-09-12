@@ -7,7 +7,7 @@ class ShortLong{
 		String a = sc.nextLine();
 		String b = sc.nextLine();
 		
-		if(a.length() =< b.length()){
+		if(a.length() <= b.length()){
 			System.out.println(a+b+a);
 		}
 		else{

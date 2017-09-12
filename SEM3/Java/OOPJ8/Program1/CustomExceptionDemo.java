@@ -8,7 +8,7 @@ class CustomExceptionDemo{
 			validate(sc.nextInt());
 		}
 		catch(InvalidAgeException e){
-			System.out.println("ujhyu");
+			System.out.println(e);
 		}
 	}
 	
