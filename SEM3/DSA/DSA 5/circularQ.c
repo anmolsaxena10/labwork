@@ -4,44 +4,41 @@
 int front=-1,rear=-1;
 
 void cqInsert(int Q[],int N,int data){
-	if(rear == (N-1)){
-		rear = 0;
-	}
-	else{
-		rear++;
-	}
-	if(rear == front){
+	if((front == 0 && rear == N-1) || (rear == front-1)){
 		printf("OverFlow\n");
-		if(rear == 0){
-			rear = N-1;
-		}
-		else{
-			rear--;
-		}
 		return;
 	}
 	
-	Q[rear] = data;
-	printf("Data entered Successfully\n");
+	else if(front == -1){
+		front = 0;
+		rear = 0;
+		Q[rear] = data;
+	}
+	else if(rear == N-1 && front != 0){
+		rear = 0;
+		Q[rear] = data;
+	}
 	
-	if(front == -1){
-		front++;
+	else{
+		rear++;
+		Q[rear] = data;
 	}
 }
 
 int cqDelete(int Q[],int N){
 	if(front == -1){
 		printf("UnderFlow");
-		return;
+		return(-1);
 	}
 	
 	int x = Q[front];
+	Q[front] = -1;
 	
 	if(front == rear){
 		front = -1;
 		rear = -1;
 	}
-	if(front == (N-1)){
+	else if(front == (N-1)){
 		front = 0;
 	}
 	else{
@@ -52,25 +49,32 @@ int cqDelete(int Q[],int N){
 }
 
 void cqView(int Q[],int N){
-	int i,j=0;
+	int i;
 	
-	for(i=0;i<(N-front-rear+1);i++){
-		
-		if((front+i) <= (N-1)){
-			printf("%d--",Q[front+i]);
+	if(front == -1){
+		printf("EmptyQueue\n");
+		return;
+	}
+	if( rear >= front){
+		for(i=front ; i<= rear ; i++){
+			printf("%d--",Q[i]);
 		}
-		else{
-			printf("%d--",Q[j]);
-			j++;
+	}
+	else{
+		for(i=front ; i<N ; i++){
+			printf("%d--",Q[i]);
+		}
+		for(i=0 ; i<=rear ; i++){
+			printf("%d--",Q[i]);
 		}
 	}
 }
 
-main(){
+int main(){
 	int choice,data,N;
 	char c;
 	
-	system("clear");
+	system("cls");
 	
 	printf("Enter size of Queue : ");
 	scanf("%d",&N);
@@ -78,7 +82,7 @@ main(){
 	int Q[N];
 	
 	
-	system("clear");
+	system("cls");
 	
 	while(1){
 		printf("\tMENU\n1)Insert\n2)Delete\n3)View\n4)Exit\n");
@@ -106,7 +110,7 @@ main(){
 		scanf("%c",&c);
 		scanf("%c",&c);
 		if(c == '\n'){
-			system("clear");
+			system("cls");
 		}
 	}
 }

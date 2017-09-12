@@ -19,7 +19,7 @@ void qInsert(int Q[],int N,int data){
 int qDelete(int Q[],int N){
 	if(front == -1){
 		printf("UnderFlow");
-		return;
+		return(-1);
 	}
 	
 	int x = Q[front];
@@ -43,11 +43,11 @@ void qView(int Q[]){
 	}
 }
 
-main(){
+int main(){
 	int choice,data,N;
 	char c;
 	
-	system("clear");
+	system("cls");
 	
 	printf("Enter size of Queue : ");
 	scanf("%d",&N);
@@ -55,7 +55,7 @@ main(){
 	int Q[N];
 	
 	
-	system("clear");
+	system("cls");
 	
 	while(1){
 		printf("\tMENU\n1)Insert\n2)Delete\n3)View\n4)Exit\n");
@@ -83,7 +83,7 @@ main(){
 		scanf("%c",&c);
 		scanf("%c",&c);
 		if(c == '\n'){
-			system("clear");
+			system("cls");
 		}
 	}
 }
