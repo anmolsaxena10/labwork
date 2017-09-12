@@ -16,6 +16,22 @@ node * addNode(int data){
 	return(p);
 }
 
+node * insert(node * node1, int data){
+	
+	if(node1 == NULL){
+		return(addNode(data));
+	}
+	
+	if(data < node1->data){
+		node1->lptr = insert(node1->lptr,data);
+	}
+	else if(data > node1->data){
+		node1->rptr = insert(node1->rptr,data);
+	}
+	
+	return(node1);
+}
+
 void inorder(node *root){
 	if(root == NULL){
 		return;
@@ -47,12 +63,14 @@ void postorder(node *root){
 }
 
 main(){
-	node *root = addNode(10);
-	root->lptr = addNode(9);
-	root->rptr = addNode(11);
-	root->lptr->lptr = addNode(7);
-	root->lptr->rptr = addNode(12);
-	root->rptr->rptr = addNode(13);
+	node *root=NULL;
+	root = insert(root, 50);
+    insert(root, 30);
+    insert(root, 20);
+    insert(root, 40);
+    insert(root, 70);
+    insert(root, 60);
+    insert(root, 80);
 	
 	printf("Inorder traversal : ");
 	inorder(root);

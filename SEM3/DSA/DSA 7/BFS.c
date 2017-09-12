@@ -20,7 +20,7 @@ void qInsert(int Q[],int N,int data){
 int qDelete(int Q[],int N){
 	if(front == -1){
 		printf("UnderFlow");
-		return;
+		return(0);
 	}
 	
 	int x = Q[front];
