@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>HiddenFieldSession</servlet-name>
+        <servlet-class>HiddenFieldSession</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UrlRewriting</servlet-name>
+        <servlet-class>UrlRewriting</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CookiesSession</servlet-name>
+        <servlet-class>CookiesSession</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HiddenFieldSession</servlet-name>
+        <url-pattern>/HiddenFieldSession</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UrlRewriting</servlet-name>
+        <url-pattern>/UrlRewriting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CookiesSession</servlet-name>
+        <url-pattern>/CookiesSession</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

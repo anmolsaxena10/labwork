@@ -1,0 +1,73 @@
+<html>
+	<head>
+	<!--<link rel="stylesheet" href="bootstrap.min.css">-->
+	<title>Placement Form</title>
+	</head>
+
+	<body style="margin: auto; width: 80%;">
+		<form action="index.html" method="POST">
+			<table border='1' class="table">
+				<tr>
+					<td colspan='2'><h1 class="text-center">Placement Form</h1></td>
+				</tr>
+				<tr>
+					<td class="col-md-9">Name: <input type="text" name="name"></td>
+					<td rowspan='3'>Photo<input type="file" name="img"></td>
+				</tr>
+				<tr>
+					<td colspan='2' class="col-md-9">Branch: <input type="text" name="branch"></td>
+				</tr>
+				<tr>
+					<td colspan='2' class="col-md-9">College: <input type="text" name="college"></td>
+				</tr>
+				<tr>
+					<td colspan='2'>
+						<table class="table">
+							<tr>
+								<td>Gender:</td>
+								<td><input type="radio" name="gender" value="male">M</td>
+							    <td><input type="radio" name="gender" value="female">F</td>
+							</tr>
+							<tr>
+								<td>Date of birth:</td>
+								<td colspan='2'><input type="date" name="dob"></td>
+							</tr>
+							<tr>
+								<td colspan='3'>
+								<table class="table table-bordered">
+									<tr><td>Education:</td></tr>
+									<tr><td>10th: <input type="textarea" name="1oth"></tr></td>
+									<tr><td>12th: <input type="textarea" name="12th"></tr></td>
+									<tr><td>Btech <select name="btech">
+											<option value="sem7">sem7</option>
+											<option value="sem8">sem8</option>
+											</select></tr></td>
+								</table>
+								</td>
+							</tr>
+							<tr>
+								<td colspan='3'>Techology prefrence</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="techPref"> Java</td>
+								<td><input type="checkbox" name="techPref"> .NET</td>
+								<td><input type="checkbox" name="techPref"> Php</td>
+							</tr>
+							<tr>
+								<td>
+									YourSelf<br>
+									<textarea name="yourSelf"></textarea>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><button type="submit">Submit</td>
+					<td><button type="reset">Reset</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+
+</html>
