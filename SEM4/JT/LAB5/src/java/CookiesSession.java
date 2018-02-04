@@ -5,6 +5,8 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -35,27 +37,57 @@ public class CookiesSession extends HttpServlet {
             /*
              * TODO output your page here. You may use following sample code.
              */
+	    
+	    ServletContext sc = getServletContext();
+            HashMap<String,Integer> sessions = (HashMap<String,Integer>)sc.getAttribute("sessionHash");
+            String sessID;
+	    
+	    if(sessions==null){
+                sessions = new HashMap<String,Integer>();
+            }
+	
             Cookie cookies[] = request.getCookies();
             Boolean first = true;
+	    Cookie myCookie = null;
             int count;
             
-            for(Cookie cookie:cookies){
-                if(cookie.getName().equals("session")){
-                    first = false;
-                    break;
+	    if(cookies!=null){
+		for(Cookie cookie:cookies){
+		    if(cookie.getName().equals("session")){
+			first = false;
+			myCookie = cookie;
+			break;
+		    }
+		}
+	    }
+            
+	    if(first || !sessions.containsKey(myCookie.getValue())){
+		count = 1;
+		while(true){
+                    sessID = RandomString.getString();
+                    if(!sessions.containsKey(sessID)){
+                        break;
+                    }
                 }
-            }
-            
-            if(!first){
-                count = 
-            }
-            
+		myCookie = new Cookie("session", sessID);
+	    }
+	    else{
+		sessID = myCookie.getValue();
+		count = sessions.get(sessID)+1;
+	    }
+	    
+	    sessions.put(sessID, count);
+	    sc.setAttribute("sessionHash", sessions);
+	    
+	    response.addCookie(myCookie);
+	    //System.out.println(count);
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CookiesSession</title>");            
+            out.println("<title>Servlet CookiesSession</title>");      
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CookiesSession at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CookiesSession<br><br> Count: " + count + "</h1>");
+	    out.println("<form method='POST'><input type='submit'></form>");
             out.println("</body>");
             out.println("</html>");
         } finally {            
