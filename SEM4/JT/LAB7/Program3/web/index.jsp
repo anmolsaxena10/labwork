@@ -4,7 +4,7 @@
     Author     : Anmol Saxena
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="false" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +12,7 @@
         <title>Welcome</title>
     </head>
     <body>
-        Logged In: ${sessionScope.loggedIn}<br>
+        
         <h1><a href="Process?q=login">Login</a></h1><br>
         <h1><a href="Process?q=logout">Logout</a></h1><br>
         <h1>Active Count ${activeCount}</h1><br>
