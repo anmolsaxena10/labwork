@@ -9,13 +9,14 @@ typedef struct node
 {
     int fix;
     int data;
-    int d[N+1];
+    int c[N+1];
+    int r[N+1];
     struct node *next;
 }node;
 
 node *head=NULL;
 
-void insert(int data, int fix, int d[])
+void insert(int data, int fix, int c[],int r[]) 
 {
     node *ptr=(node *)malloc(sizeof(node));
     ptr->data=data;
@@ -23,7 +24,9 @@ void insert(int data, int fix, int d[])
     
     int i;
     for(i=0 ; i<=N ; i++){
-    	ptr->d[i] = d[i];
+    	ptr->c[i] = c[i];
+    	ptr->r[i]=	r[i];
+		
     }
     
     if(head==NULL)
@@ -78,19 +81,17 @@ void print()
 void lowerBound(node *ptr){
 	int lb=0,i,j;
 	for(i=1 ; i<=M ; i++){
-		if(ptr->d[i])
+		if(ptr->r[i])
 			continue;
 		int tmin=1000;
 		for(j=1 ; j<=N ; j++){
-			if(ptr->d[j])
+			if(ptr->c[j])
 				continue;
 			if(a[i][j] < tmin)
 				tmin = a[i][j];
 		}
-		printf("%d ",tmin);
 		lb += tmin;
 	}
-	printf("\n");
 	ptr->data = ptr->fix+lb;
 }
 
@@ -100,37 +101,34 @@ void bound(){
 		for(i=1 ; i<=N ; i++){
 			node *temp = (node *)malloc(sizeof(node));
 			temp->data = head->data;
+			if((temp->data)>ub)
+			{
+				printf("\n Minimum Time Required is %d\n",ub);
+				exit(0);
+			}
 			temp->fix = head->fix;
 			for(j=0 ; j<=N ; j++){
-				temp->d[i] = head->d[i];
+				temp->c[j] = head->c[j];
+				temp->r[j]= head->r[j];
 			}
-			if(temp->d[i]!=1){
+			if(temp->c[i]!=1){
 				int count=0;
-				for(j=0 ; j<=N ; j++){
-					if(temp->d[i])
+				for(j=1 ; j<=N ; j++){
+					if(temp->r[j])
 						count++;
 				}
 				count++;
-				temp->d[i] = 1;
+				temp->c[i] = 1;
+				temp->r[count] = 1;
 				temp->fix = temp->fix + a[count][i];
 				temp->data = temp->fix;
 				lowerBound(temp);
-				
 				if(count==N-1){
+					if(temp->data<ub)
 					ub = temp->data;
 				}
-				else if(temp->data <= ub){
-					insert(temp->data, temp->fix, temp->d);
-					printf("\n data-%d  fix-%d \n", temp->data, temp->fix);
-					int k;
-					for(k=1 ; k<=N ;k++ ){
-						printf("%d ", temp->d[k]);
-					}
-					printf("\n");
-				}
-				else{
-					printf("%d\n", ub);
-					exit(0);
+				else if((temp->data) <= ub){
+					insert(temp->data, temp->fix, temp->c,temp->r);
 				}
 			}
 		}
@@ -149,7 +147,10 @@ int main(){
         for(i=1 ; i<=M ; i++){
         	ub = ub + a[i][i];
         }
-        int tempD[] = {0,0,0,0,0};
-        insert(0, 0, tempD);
+
+        int tempC[] = {0,0,0,0,0};
+		int tempR[] = {0,0,0,0,0};        
+        insert(0, 0, tempC,tempR);
 	bound();
 }
+
